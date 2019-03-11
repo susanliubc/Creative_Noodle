@@ -34,25 +34,39 @@
                 $errors['ingredients'] = 'Ingredients must be comma seperated list';
             };
         };
+
+        //Redirect to the home page
+        if(array_filter($errors)) {
+
+        } else {
+            header('Location: index.php');
+        };
     };
 ?>
 
-<section class="container grey-text text-darken-2">
-    <h3 class="center">Add a noodle</h3>
-    <form action="addForm.php" class="container" method="POST">
-        <label>Email</label>
-        <input type="email" name="email" value="<?php echo htmlspecialchars($email) ?>">
-        <div class="red-text"><?php echo $errors['email'] ?></div>
-        <label>Noodle Name</label>
-        <input type="text" name="noodleName" value="<?php echo htmlspecialchars($noodleName) ?>">
-        <div class="red-text"><?php echo $errors['noodleName'] ?></div>
-        <label>Ingredients (Comma seperated) </label>
-        <input type="text" name="ingredients" value="<?php echo htmlspecialchars($ingredients) ?>">
-        <div class="red-text"><?php echo $errors['ingredients'] ?></div>
-        <div class="center">
-            <input type="submit" name="submit" class="btn brand">
-        </div>
-    </form>
-</section>
+<!DOCTYPE html>
+<html>
 
+    <?php include('templates/header.php'); ?>
 
+    <section class="container grey-text text-darken-2">
+        <h3 class="center">Add a noodle</h3>
+        <form action="addForm.php" class="container" method="POST">
+            <label>Email</label>
+            <input type="email" name="email" value="<?php echo htmlspecialchars($email) ?>">
+            <div class="red-text"><?php echo $errors['email'] ?></div>
+            <label>Noodle Name</label>
+            <input type="text" name="noodleName" value="<?php echo htmlspecialchars($noodleName) ?>">
+            <div class="red-text"><?php echo $errors['noodleName'] ?></div>
+            <label>Ingredients (Comma seperated) </label>
+            <input type="text" name="ingredients" value="<?php echo htmlspecialchars($ingredients) ?>">
+            <div class="red-text"><?php echo $errors['ingredients'] ?></div>
+            <div class="center">
+                <input type="submit" name="submit" class="btn brand">
+            </div>
+        </form>
+    </section>
+
+    <?php include('templates/footer.php'); ?>
+
+</html>
