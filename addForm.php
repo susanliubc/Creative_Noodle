@@ -1,4 +1,5 @@
 <?php
+    include('config/db_connect.php');
 
     $email=$noodleName=$ingredients='';
     $errors = array('email' => '', 'noodleName' => '', 'ingredients' => '' );
@@ -35,12 +36,23 @@
             };
         };
 
-        //Redirect to the home page
+        //save data to database and redirect to the home page
         if(array_filter($errors)) {
-
         } else {
-            header('Location: index.php');
-        };
+            $email = mysqli_real_escape_string($_POST['email']);
+            $noodleName = mysqli_real_escape_string($_POST['noodleName']);
+            $ingredients = mysqli_real_escape_string($_POST['ingredients']);
+
+            //create sql
+            $sql = 'INSERT INTO noodles(noodleName, ingredients, email) VALUES($noodleName, $ingredients, $email)';
+
+            //save to database and check
+            if(mysqli_query($conn, $sql)) {
+                header('Location: index.php');
+            } else {
+                echo 'Query error: ' . mysqli_error($conn);
+            }
+        }
     };
 ?>
 
@@ -50,7 +62,7 @@
     <?php include('templates/header.php'); ?>
 
     <section class="container grey-text text-darken-2">
-        <h3 class="center">Add a noodle</h3>
+        <h4 class="center">Add a noodle</h4>
         <form action="addForm.php" class="container" method="POST">
             <label>Email</label>
             <input type="email" name="email" value="<?php echo htmlspecialchars($email) ?>">
@@ -70,3 +82,5 @@
     <?php include('templates/footer.php'); ?>
 
 </html>
+
+
