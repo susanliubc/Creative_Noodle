@@ -44,7 +44,7 @@
             $ingredients = mysqli_real_escape_string($_POST['ingredients']);
 
             //create sql
-            $sql = 'INSERT INTO noodles(noodleName, ingredients, email) VALUES($noodleName, $ingredients, $email)';
+            $sql = "INSERT INTO noodles(noodleName, ingredients, email) VALUES('$noodleName', '$ingredients', '$email')";
 
             //save to database and check
             if(mysqli_query($conn, $sql)) {

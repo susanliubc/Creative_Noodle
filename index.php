@@ -37,7 +37,7 @@
                             </ul>
                         </div>
                         <div class="card-action right-align">
-                            <a class="brand-text" href="#">More Information</a>
+                            <a class="brand-text" href="details.php?id=<?php echo $noodle['id'] ?>">More Info</a>
                         </div>
                     </div>
                 </div>
